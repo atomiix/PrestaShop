@@ -1708,7 +1708,7 @@ class OrderController extends FrameworkBundleAdminController
                         ]
                     ),
                 CustomerMessageConstraintException::INVALID_MESSAGE => $this->trans(
-                        'The %s field is not valid',
+                        'The %s field is not valid test new wording',
                         'Admin.Notifications.Error',
                         [
                             sprintf('"%s"', $this->trans('Message', 'Admin.Global')),
