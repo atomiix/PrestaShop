@@ -413,17 +413,6 @@ class OrderProductQuantityUpdater
      */
     private function updateOrderInvoice(OrderDetail $orderDetail, ?OrderInvoice $orderInvoice): void
     {
-        if ($orderDetail->id_order_invoice != 0) {
-            $orderDetailInvoice = new OrderInvoice($orderDetail->id_order_invoice);
-            // @todo: use https://github.com/PrestaShop/decimal for price computations
-            $orderDetailInvoice->total_paid_tax_excl -= $orderDetail->total_price_tax_excl;
-            $orderDetailInvoice->total_paid_tax_incl -= $orderDetail->total_price_tax_incl;
-            $orderDetailInvoice->total_products -= $orderDetail->total_price_tax_excl;
-            $orderDetailInvoice->total_products_wt -= $orderDetail->total_price_tax_incl;
-
-            $orderDetailInvoice->update();
-        }
-
         // Apply change on OrderInvoice
         if (isset($orderInvoice) && $orderDetail->id_order_invoice != $orderInvoice->id) {
             $orderInvoice->total_products += $orderDetail->total_price_tax_excl;
