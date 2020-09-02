@@ -29,6 +29,12 @@ services:
             - '@router'
             - 'admin_merchandise_returns_filter'
 
+    prestashop.core.grid.filter.order_return_products_form_factory:
+      class: 'PrestaShop\PrestaShop\Core\Grid\Filter\OrderReturnProductsFilterFormFactory'
+      arguments:
+        - '@prestashop.core.grid.filter.form_factory'
+        - '@router'
+        - '@request_stack'
 
     prestashop.core.grid.filter.credit_slip_form_factory:
         class: 'PrestaShop\PrestaShop\Core\Grid\Filter\FilterFormFactoryFormActionDecorator'

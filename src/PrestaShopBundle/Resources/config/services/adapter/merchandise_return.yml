@@ -1,0 +1,37 @@
+services:
+    _defaults:
+        public: true
+
+    # Command handlers
+
+    prestashop.adapter.order_return.query_handler.get_order_return_for_editing:
+        class: 'PrestaShop\PrestaShop\Adapter\OrderReturn\QueryHandler\GetOrderReturnForEditingHandler'
+        tags:
+            - name: tactician.handler
+              command: 'PrestaShop\PrestaShop\Core\Domain\OrderReturn\Query\GetOrderReturnForEditing'
+
+    prestashop.adapter.order_return.query_handler.get_order_detail_customizations:
+        class: 'PrestaShop\PrestaShop\Adapter\OrderReturn\QueryHandler\GetOrderDetailCustomizationsHandler'
+        arguments:
+            - '@=service("prestashop.adapter.legacy.context").getContext().language.id'
+        tags:
+            - name: tactician.handler
+              command: 'PrestaShop\PrestaShop\Core\Domain\OrderReturn\Query\GetOrderDetailCustomizations'
+
+    prestashop.adapter.order_return.command_handler.edit_order_return_handler:
+        class: 'PrestaShop\PrestaShop\Adapter\OrderReturn\CommandHandler\UpdateOrderReturnStateHandler'
+        tags:
+            - name: tactician.handler
+              command: 'PrestaShop\PrestaShop\Core\Domain\OrderReturn\Command\UpdateOrderReturnStateCommand'
+
+    prestashop.adapter.order_return.command_handler.delete_product_from_order_return_handler:
+        class: 'PrestaShop\PrestaShop\Adapter\OrderReturn\CommandHandler\DeleteProductFromOrderReturnHandler'
+        tags:
+            - name: tactician.handler
+              command: 'PrestaShop\PrestaShop\Core\Domain\OrderReturn\Command\DeleteProductFromOrderReturnCommand'
+
+    prestashop.adapter.order_return.command_handler.bulk_delete_product_from_order_return_handler:
+        class: 'PrestaShop\PrestaShop\Adapter\OrderReturn\CommandHandler\BulkDeleteProductFromOrderReturnHandler'
+        tags:
+            - name: tactician.handler
+              command: 'PrestaShop\PrestaShop\Core\Domain\OrderReturn\Command\BulkDeleteProductFromOrderReturnCommand'

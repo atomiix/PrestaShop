@@ -1099,6 +1099,12 @@ services:
 
     form.type.order.message:
         class: 'PrestaShopBundle\Form\Admin\Sell\CustomerService\OrderMessageType'
+
+    form.type.merchandise.return:
+        class: 'PrestaShopBundle\Form\Admin\Sell\CustomerService\MerchandiseReturn\OrderReturnType'
+        arguments:
+              - '@=service("prestashop.adapter.form.choice_provider.order_return_state").getChoices()'
+              - '@translator'
         tags:
             - { name: form.type }
 

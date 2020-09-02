@@ -74,6 +74,10 @@
       outline: none;
     }
   }
+
+  .form-control-value {
+    padding-top: calc(.375rem + 1px);
+  }
 }
 
 .invalid-feedback-container {
