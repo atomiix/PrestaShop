@@ -895,7 +895,7 @@ class Install extends AbstractInstall
     public function getModulesOnDisk(): array
     {
         $modules = [];
-        foreach (scandir(_PS_MODULE_DIR_, SCANDIR_SORT_NONE) as $module) {
+        foreach (scandir(_PS_MODULE_DIR_, SCANDIR_SORT_ASCENDING) as $module) {
             if ($module[0] != '.' && is_dir(_PS_MODULE_DIR_ . $module) && file_exists(_PS_MODULE_DIR_ . $module . '/' . $module . '.php')) {
                 $modules[] = $module;
             }
