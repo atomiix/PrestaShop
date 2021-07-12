@@ -59,10 +59,16 @@ jobs:
             -   name: Install PrestaShop
                 run: php install-dev/index_cli.php --language=en --country=fr --domain=localhost --db_server=127.0.0.1 --db_password=password --db_name=prestashop --db_create=1 --name=prestashop.unit.test --email=demo@prestashop.com --password=prestashop_demo
 
-            -   name: Run integration-tests
-                run: composer run-script integration-tests --timeout=0
-                env:
-                    SYMFONY_DEPRECATIONS_HELPER: disabled
+            -   name: Check lang installed
+                run: |
+                    md5sum translations/sf-fr-FR.zip
+                    ls -l translations/
+
+            -   name: Create test db
+                run: composer create-test-db
+
+            -   name: Check lang installed
+                run: md5sum translations/sf-fr-FR.zip
 
             -   name: Run integration-behaviour-tests
                 run: composer run-script integration-behaviour-tests --timeout=0
